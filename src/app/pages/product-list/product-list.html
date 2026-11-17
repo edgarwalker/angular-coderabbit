@@ -1,0 +1,22 @@
+<section class="page">
+  <header class="page-header">
+    <h1 class="page-title">Products</h1>
+    <p class="page-subtitle">Browse items and add them to your cart.</p>
+  </header>
+
+  <ul class="product-grid">
+    @for (product of products; track product.id) {
+      <li class="product-card">
+        <img [src]="product.imageUrl" [alt]="product.name" class="product-image" width="320" height="200" />
+        <div class="product-body">
+          <h2 class="product-name">{{ product.name }}</h2>
+          <p class="product-description">{{ product.description }}</p>
+          <div class="product-footer">
+            <span class="product-price">{{ product.price | currency }}</span>
+            <button type="button" class="btn-primary" (click)="addToCart(product)">Add to cart</button>
+          </div>
+        </div>
+      </li>
+    }
+  </ul>
+</section>
