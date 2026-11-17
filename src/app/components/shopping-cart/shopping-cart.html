@@ -1,0 +1,40 @@
+<section class="cart">
+  <header class="cart-header">
+    <h1 class="cart-title">Shopping cart</h1>
+    <p class="cart-subtitle">{{ cart.itemCount() }} item(s) in cart</p>
+  </header>
+
+  @if (cart.cartItems().length === 0) {
+    <p class="cart-empty">
+      Your cart is empty.
+      <a routerLink="/" class="cart-link">Browse products</a>
+    </p>
+  } @else {
+    <ul class="cart-list">
+      @for (line of cart.cartItems(); track line.product.id) {
+        <li class="cart-row">
+          <img
+            [src]="line.product.imageUrl"
+            [alt]="line.product.name"
+            class="cart-thumb"
+            width="80"
+            height="50"
+          />
+          <div class="cart-info">
+            <span class="cart-name">{{ line.product.name }}</span>
+            <span class="cart-qty">Qty: {{ line.quantity }}</span>
+          </div>
+          <span class="cart-line-total">
+            {{ line.product.price * line.quantity | currency }}
+          </span>
+          <button type="button" class="btn-remove" (click)="removeItem(line.product.id)">Remove</button>
+        </li>
+      }
+    </ul>
+
+    <footer class="cart-footer">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total">{{ cart.totalPrice() | currency }}</span>
+    </footer>
+  }
+</section>
