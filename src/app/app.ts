@@ -1,15 +1,12 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { CartService } from './services/cart.service';
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  private readonly cart = inject(CartService);
-
-  protected readonly cartCount = this.cart.itemCount;
+  protected readonly title = signal('angular-coderabbit');
 }
